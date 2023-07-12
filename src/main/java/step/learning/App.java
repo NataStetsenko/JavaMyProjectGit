@@ -1,5 +1,7 @@
 package step.learning;
 
+import step.learning.control.ControlDemo;
+
 /*Java ВступJava - ООП мова програмування, на сьогодні курується OracleМова типу "транслятор"
 - компілюється у байт-код (проміжнийкод), який виконується спеціальною платформою (JRE -Java Runtime Environment)
 або JVM (Virtual Machine)Ця платформа встановлюється як окреме ПЗ. Для перевіркиможна виконати у терміналі
@@ -33,5 +35,6 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
+        new ControlDemo().run();
     }
 }

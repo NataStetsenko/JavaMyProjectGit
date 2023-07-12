@@ -3,7 +3,7 @@ package step.learning.control;
 public class ControlDemo {
     public void run(){
         System.out.println("ControlDemo run");
-//        new HomeWork1().print();
+        new HomeWork1().print();
         //Примитиви
         byte xb;
         short xs;
