@@ -1,6 +1,7 @@
 package step.learning;
 
 import step.learning.control.ControlDemo;
+import step.learning.oop.Library;
 
 /*Java ВступJava - ООП мова програмування, на сьогодні курується OracleМова типу "транслятор"
 - компілюється у байт-код (проміжнийкод), який виконується спеціальною платформою (JRE -Java Runtime Environment)
@@ -34,7 +35,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        new ControlDemo().run();
+       /*
+        new ControlDemo().run();*/
+        new Library().showCatalog();
     }
 }
