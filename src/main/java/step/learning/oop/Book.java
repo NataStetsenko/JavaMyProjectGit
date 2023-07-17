@@ -1,6 +1,6 @@
 package step.learning.oop;
 
-public class Book extends Literature{
+public class Book extends Literature implements CopyAble{
     private String author;
 
     public Book(String title, String author) {
@@ -14,5 +14,10 @@ public class Book extends Literature{
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String getCard() {
+        return String.format("Book: %s %s", this.getAuthor(), super.getTitle());//інтерполяція
     }
 }

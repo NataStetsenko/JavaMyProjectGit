@@ -1,8 +1,9 @@
 package step.learning.oop;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Newspaper extends Literature{
+public class Newspaper extends Literature implements Periodic{
     public Date getDate() {
         return date;
     }
@@ -17,4 +18,14 @@ public class Newspaper extends Literature{
     }
 
     private Date date;
+private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    @Override
+    public String getCard() {
+        return String.format("Newspaper: '%s' %s",dateFormat.format(this.getDate()), super.getTitle());//інтерполяція
+    }
+
+    @Override
+    public String getPeriod() {
+        return "Daily";
+    }
 }

@@ -31,5 +31,28 @@ public class ControlDemo {
         * Control flow instructions - шнструкції управлінням виконанням
         * операторів умовного та ціклічного виконання, а також переходів між інструкціями
         *  */
+        // String
+        String str1 = "Hello";  // String pool - одне значення стає
+        String str2 = "Hello";  // одним об'єктом
+        String str3 = new String("Hello");
+        String str4 = new String("Hello");
+        if( str1 == str2 ) {  // через пул рядків це насправді один і той самий об'єкт
+            System.out.println("str1 == str2");
+        }
+        else {
+            System.out.println("str1 != str2");
+        }
+        if( str3 == str4 ) {  // об'єкти рівні тільки якщо це один об'єкт (за посиланням)
+            System.out.println("str3 == str4");
+        }
+        else {
+            System.out.println("str3 != str4");
+        }
+        if( str3.equals( str4 ) ) {  // порівняння за контентом
+            System.out.println("str3 equals str4");
+        }
+        else {
+            System.out.println("str3 !equals str4");
+        }
     }
 }
