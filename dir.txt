@@ -1,0 +1,37 @@
+2023-02-27T22:06:15.127007Z <DIR>      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Ready             Ready     
+2023-07-19T17:37:08.107327Z 0          C:\Users\Natali\OneDrive\Рабочий стол\Foto\Ready\Новый текстовый документ.txt Новый текстовый документ.txt
+2023-07-19T17:49:10.305719Z <DIR>      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка       Новая папка
+2023-03-04T12:52:57.434915Z 86998      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\1.JPG 1.JPG     
+2023-03-04T12:52:57.450542Z 157696     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\2.JPG 2.JPG     
+2023-02-20T12:00:12.095669Z 283852     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\277.mp4 277.mp4   
+2023-02-26T11:25:52.058679Z 298228     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\291.mp4 291.mp4   
+2023-03-04T12:52:57.450542Z 159364     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\3.JPG 3.JPG     
+2023-03-04T12:52:57.450542Z 145909     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\4.JPG 4.JPG     
+2023-02-20T11:59:27.072066Z 556148     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\543.mp4 543.mp4   
+2023-02-20T11:56:24.454761Z 677778     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\661.mp4 661.mp4   
+2023-02-20T11:57:42.704098Z 784291     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\765.mp4 765.mp4   
+2023-02-20T12:05:41.598955Z 1027498    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\970.mp4 970.mp4   
+2023-01-16T11:45:35.248102Z 152311     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\A1.jpg A1.jpg    
+2023-01-16T11:45:39.689033Z 101570     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\A2.jpg A2.jpg    
+2023-01-16T11:45:19.578861Z 111690     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\f1.jpg f1.jpg    
+2023-02-14T14:47:44.389586Z 175163     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\f2.jpg f2.jpg    
+2023-02-14T15:02:39.150078Z 203443     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\f3.jpg f3.jpg    
+2023-07-05T07:56:43.437333Z 37051      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\fotka.png fotka.png 
+2023-03-03T08:47:43.695274Z 126048     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\photo_2023-03-01_17-11-14.jpg photo_2023-03-01_17-11-14.jpg
+2023-03-07T10:43:26.360934Z 10657974   C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\донецк.mp4 донецк.mp4
+2023-04-28T08:50:58.304089Z 113193     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\конь.jpg конь.jpg  
+2023-04-15T08:44:44.42594Z 4783074    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\мемы_на_работе_ТГ.mp4 мемы_на_работе_ТГ.mp4
+2023-07-05T10:46:05.264295Z 6102       C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\пингвин.jpg пингвин.jpg
+2023-04-05T14:25:45.811266Z 610936     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\Презентация — копия.pdf Презентация — копия.pdf
+2023-04-05T14:21:50.955282Z 1174784    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новая папка\Презентация — копия.pptx Презентация — копия.pptx
+2023-07-19T17:49:24.202545Z 0          C:\Users\Natali\OneDrive\Рабочий стол\Foto\Новый текстовый документ.txt Новый текстовый документ.txt
+2023-04-02T17:54:08.909023Z <DIR>      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация       Презентация
+2023-04-02T17:54:09.85046Z 1005623    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Gay_Kavasaki_-_Startap.pdf Gay_Kavasaki_-_Startap.pdf
+2023-04-02T17:54:09.85046Z 38392970   C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\iПрезентация.pdf iПрезентация.pdf
+2023-04-02T17:54:09.880675Z 2922549    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Karmin Gallo - iPrezentaciya. Uroki ubezhdeniya ot lidera Apple Stiva Dzhobsa.djvu Karmin Gallo - iPrezentaciya. Uroki ubezhdeniya ot lidera Apple Stiva Dzhobsa.djvu
+2023-04-02T17:54:09.880675Z 16111582   C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\podcast-for-students-001.mp3 podcast-for-students-001.mp3
+2023-04-02T17:54:08.909023Z <DIR>      C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Примеры презентаций Примеры презентаций
+2023-04-02T17:54:09.900763Z 19469267   C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Примеры презентаций\Визуальные новеллы.pptx Визуальные новеллы.pptx
+2023-04-02T17:54:09.918826Z 3197601    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Примеры презентаций\Интернет-ресторан.pptx Интернет-ресторан.pptx
+2023-04-02T17:54:09.920842Z 1351824    C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Примеры презентаций\Магазин компьютерных составляющих.pptx Магазин компьютерных составляющих.pptx
+2023-04-02T17:54:09.920842Z 825150     C:\Users\Natali\OneDrive\Рабочий стол\Foto\Презентация\Примеры презентаций\Магазин.pptx Магазин.pptx

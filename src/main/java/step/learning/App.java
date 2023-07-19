@@ -1,7 +1,12 @@
 package step.learning;
 
 import step.learning.control.ControlDemo;
+import step.learning.files.FileDemo;
+import step.learning.files.FileHomeWork;
 import step.learning.oop.Library;
+
+import java.io.File;
+import java.util.Scanner;
 
 /*Java ВступJava - ООП мова програмування, на сьогодні курується OracleМова типу "транслятор"
 - компілюється у байт-код (проміжнийкод), який виконується спеціальною платформою (JRE -Java Runtime Environment)
@@ -35,8 +40,10 @@ public class App
 {
     public static void main( String[] args )
     {
-       /*
-        new ControlDemo().run();*/
+        new FileHomeWork().pathToDir();
+        /*  new ControlDemo().run();
         new Library().showCatalog();
+        new FileDemo().run();*/
+
     }
 }
