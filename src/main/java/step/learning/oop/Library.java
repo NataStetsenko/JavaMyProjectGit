@@ -20,6 +20,9 @@ public class Library {
         funds.add(new Poster("Harry Potter"));
         funds.add(new Poster("Jack Sparrow"));
     }
+    public void getLiterature(Literature literature) {
+        funds.add(literature);
+    }
 
     public void showCatalog() {
         System.out.println( "--------Exhibits-------------" );

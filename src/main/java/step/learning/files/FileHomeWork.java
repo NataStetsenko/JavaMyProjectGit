@@ -15,10 +15,10 @@ public void pathToDir(){
     String s = scanner.nextLine();
     File currentDir = new File(s);
   /*  File currentDir = new File("D:\\Working folder\\Java\\Новая папка");*/
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     searchResult(currentDir, sb);
 }
-    public void searchResult(File currentDir, StringBuffer sb) {
+    public void searchResult(File currentDir, StringBuilder sb) {
         if (currentDir.isDirectory()) {
             File[] files = currentDir.listFiles();
             if (files != null) {

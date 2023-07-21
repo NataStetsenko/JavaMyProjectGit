@@ -3,6 +3,7 @@ package step.learning.oop;
 public class Book extends Literature implements CopyAble{
     private String author;
 
+
     public Book(String title, String author) {
         super.setTitle(title);
         this.setAuthor(author);

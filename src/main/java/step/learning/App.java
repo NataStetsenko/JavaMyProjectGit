@@ -3,6 +3,8 @@ package step.learning;
 import step.learning.control.ControlDemo;
 import step.learning.files.FileDemo;
 import step.learning.files.FileHomeWork;
+import step.learning.files.GsonDemo;
+import step.learning.files.GsonHomeWork;
 import step.learning.oop.Library;
 
 import java.io.File;
@@ -40,8 +42,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        new FileHomeWork().pathToDir();
-        /*  new ControlDemo().run();
+        new GsonHomeWork().run();
+       /* new GsonDemo().run();
+         new FileHomeWork().pathToDir();
+        new ControlDemo().run();
         new Library().showCatalog();
         new FileDemo().run();*/
 
