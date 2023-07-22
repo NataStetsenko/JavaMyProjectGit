@@ -1,6 +1,7 @@
 package step.learning;
 
 import step.learning.control.ControlDemo;
+import step.learning.db.DbDemo;
 import step.learning.files.FileDemo;
 import step.learning.files.FileHomeWork;
 import step.learning.files.GsonDemo;
@@ -42,8 +43,9 @@ public class App
 {
     public static void main( String[] args )
     {
-        new GsonHomeWork().run();
-       /* new GsonDemo().run();
+       /* new DbDemo().run();*/
+       new GsonHomeWork().run();
+        /* new GsonDemo().run();
          new FileHomeWork().pathToDir();
         new ControlDemo().run();
         new Library().showCatalog();

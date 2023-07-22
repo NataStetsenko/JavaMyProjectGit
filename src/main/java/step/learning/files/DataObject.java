@@ -1,5 +1,7 @@
 package step.learning.files;
-
+/**
+ * Для дослідження можливостей Gson
+ */
 public class DataObject {
     private String field1 ;
     private String field2 ;
