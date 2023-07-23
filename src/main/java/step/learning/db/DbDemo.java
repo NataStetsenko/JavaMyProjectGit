@@ -7,8 +7,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class DbDemo {
     private String url;
@@ -16,6 +18,7 @@ public class DbDemo {
     private String password;
     private com.mysql.cj.jdbc.Driver driverSql;
     private java.sql.Connection connection;
+    private RandomValue randomValue;
 
     public void run() {
         System.out.println("DB Demo");
@@ -29,9 +32,23 @@ public class DbDemo {
             return;
         }
         this.ensureCreated();
-
+        this.client();
         this.disConnect();
 
+    }
+    private void client(){
+        System.out.println("Enter the numbers og lines:");
+        Scanner scanner = new Scanner(System.in);
+        int lines = scanner.nextInt();
+        randomValue = new RandomValue();
+        for (int i = 0; i < lines; i++) {
+            int val_int = randomValue.randomInteger();
+            float val_float = randomValue.randomFloat();
+            String val_str = randomValue.randomString();
+            this.ensureInsert(val_int, val_float, val_str);
+            System.out.println(val_int);
+        }
+        System.out.println("Ready...");
     }
 
     private void ensureCreated() {
@@ -43,12 +60,28 @@ public class DbDemo {
                 ")";
         try (Statement statement = this.connection.createStatement()) { // ADO.NET SqlCommand
             statement.executeUpdate(sql); // executeUpdate - для запитів без повернення
-            System.out.println("Ok");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
 
+    private void ensureInsert(int val_int, float val_float, String val_str) {
+         /* String sql = "INSERT INTO jpu121_randoms(" +
+                "`id`, `val_int`, `val_str`, `val_float`)" +
+                " VALUES(UUID(), " + val_int + ", '" + val_str + "', " + val_float + ")";*/
+        try {
+            String sql = "INSERT INTO jpu121_randoms(" +
+                    "`id`, `val_int`, `val_str`, `val_float`)" +
+                    " VALUES(UUID(), ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, val_int);
+            preparedStatement.setString(2, val_str);
+            preparedStatement.setFloat(3, val_float);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
     private JSONObject config() {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader("appsetting.json"))) {
