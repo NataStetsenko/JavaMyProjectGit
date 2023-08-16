@@ -44,8 +44,8 @@ public class App
     public static void main( String[] args )
     {
        new DbDemo().run();
-        /* new GsonHomeWork().run();
-        new GsonDemo().run();
+         /* new GsonHomeWork().run();
+       new GsonDemo().run();
         new FileHomeWork().pathToDir();
         new ControlDemo().run();
         new Library().showCatalog();

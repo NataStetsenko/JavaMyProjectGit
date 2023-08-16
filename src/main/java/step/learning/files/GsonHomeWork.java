@@ -150,7 +150,7 @@ public class GsonHomeWork {
         }
     }
 
-    public static JSONArray readJSONArrayFromFile(String name) throws IOException, JSONException {
+    public static JSONArray readJSONArrayFromFile (String name) throws IOException, JSONException{
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(name))) {
             String line;
@@ -158,6 +158,9 @@ public class GsonHomeWork {
                 stringBuilder.append(line);
             }
         }
+       /* catch (IOException | JSONException e){
+            e.printStackTrace();
+        }*/
         String jsonString = stringBuilder.toString();
         return new JSONArray(jsonString);
     }
