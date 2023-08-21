@@ -3,13 +3,14 @@ package step.learning.db;
 import com.mysql.cj.jdbc.Driver;
 import org.json.JSONObject;
 import step.learning.control.HomeWork1;
+import step.learning.db.dao.RecordDao;
+import step.learning.db.dto.Record;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class DbDemo {
     private String url;
@@ -18,7 +19,9 @@ public class DbDemo {
     private com.mysql.cj.jdbc.Driver driverSql;
     private java.sql.Connection connection;
     private RandomValue randomValue;
+    private final Random random = new Random() ;
 
+    private RecordDao recordDao ;
     public void run() {
         JSONObject conf = config();
         JSONObject dbConf = conf.getJSONObject("DataProviders").getJSONObject("PlanetScale");
@@ -28,13 +31,65 @@ public class DbDemo {
         if ((connection = this.connect()) == null) {
             return;
         }
-        this.rowsCountInSegment();
+        recordDao = new RecordDao(random, connection) ;
+        if( recordDao.ensureCreated() ) {
+            System.out.println( "Ensure OK" ) ;
+        }
+       /* createRandomRecords( 3 ) ;
+         ShowRandomsCount() ;
+         System.out.println(recordDao.getById(
+                UUID.fromString("5216e187-905f-4311-a39c-566734e99715"))) ;*/
+
+      /*  Record record = new Record() ;
+        record.setValInt( 100 ) ;
+        record.setValFloat( 100.500 ) ;
+        record.setValStr( "Hello" ) ;
+        recordDao.create( record ) ;*/
+        System.out.println("-------------------HomeWork 2------------------");
+
+        recordDao.delete(UUID.fromString("5216e187-905f-4311-a39c-566734e99715"));
+
+           recordDao.deleteRecord(recordDao.getById(
+                UUID.fromString("f69d5ed9-2946-11ee-b81c-e686aec5586c")));
+
+        Record record = recordDao.getById(UUID.fromString("081a4f15-2949-11ee-b81c-e686aec5586c"));
+        record.setValInt(99);
+        record.setValStr("updateRecord");
+        record.setValFloat(99.999);
+        recordDao.updateRecord(record);
+
+        showAll();
+
+
+
+       /* this.rowsCountInSegment();*/
         /*this.ensureCreated();*/
         /* showRandoms();*/
         /*  this.client();*/
         this.disConnect();
     }
-   /* -----------------HomeWork-------------------- */
+
+    private void showAll() {
+        List<Record> records = recordDao.getAll() ;
+        if( records == null ) {
+            System.out.println( "Error getting list" ) ;
+        }
+        else {
+            for( Record record : records ) {
+                System.out.println( record ) ;
+            }
+        }
+    }
+    private void ShowRandomsCount() {
+        int cnt = recordDao.getCount() ;
+        if( cnt == -1 ) {
+            System.out.println( "Counter error" ) ;
+        }
+        else {
+            System.out.println( "Rows count: " + cnt ) ;
+        }
+    }
+    /* -----------------HomeWork-------------------- */
     private void rowsCountInSegment(){
         System.out.println("Enter the lower limit of the range:");
         Scanner scanner = new Scanner(System.in);
@@ -77,19 +132,7 @@ public class DbDemo {
             System.err.println(e.getMessage());
         }
     }
-    private void ensureCreated() {
-        String sql = "CREATE TABLE IF NOT EXISTS jpu121_randoms (" +
-                " `id`          CHAR(36) PRIMARY KEY," +
-                " `val_int`     INT," +
-                " `val_str`     VARCHAR(256)," +
-                " `val_float`   FLOAT" +
-                ")";
-        try (Statement statement = this.connection.createStatement()) { // ADO.NET SqlCommand
-            statement.executeUpdate(sql); // executeUpdate - для запитів без повернення
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
+
     private void ShowCount(){
         try( PreparedStatement prep = this.connection.prepareStatement(
                 "SELECT COUNT(id) FROM jpu121_randoms"
@@ -117,48 +160,6 @@ public class DbDemo {
             System.err.println(e.getMessage());
         }
     }
-    private JSONObject config() {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader("appsetting.json"))) {
-            int c;
-            while ((c = reader.read()) != -1) {
-                sb.append((char) c);
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return new JSONObject(sb.toString());
-    }
-
-    private java.sql.Connection connect() {
-        // реєструємо драйвер
-        // а) через Class.forName("com.mysql.cj.jdbc.Driver");
-        // б) через пряме створення драйвера
-        try {
-            driverSql = new com.mysql.cj.jdbc.Driver();
-            DriverManager.registerDriver(driverSql);
-            // підключаємось, маючи зареєстрований драйвер
-            return DriverManager.getConnection(url, user, password);
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
-
-    private void disConnect() {
-        try {
-            if (connection != null) {
-                connection.close();
-            }
-            if (driverSql != null) {
-                DriverManager.deregisterDriver(driverSql);
-            }
-
-        } catch (SQLException ignored) {
-        }
-    }
-
     private void showRandoms() {
         String sql = "SELECT `id`, `val_int`, `val_str`,`val_float` FROM jpu121_randoms" ;   // ';' у кінці SQL команди не потрібна
         try( Statement statement = this.connection.createStatement() ) {
@@ -184,36 +185,47 @@ public class DbDemo {
         }
     }
 
-    private void insertPrepared(int val_int, float val_float, String val_str) {
-          /*
-        Підготовлені (prepared) запити - можна вважати тимчасовими збережними процедурами
-        (скомпільовані запити, які зберігаються з боку СУБД)
-        Ідея - запит компілюється і скомпільований код залишається у СУБД протягом відкритого
-        з'єднання. Протягом цього часу запит можна повторити, у т.ч. з іншими параметрами
-        (за що їх також називають параметризованими запитами)
-         */
-        String sql = "INSERT INTO jpu121_randoms(" +
-                "`id`, `val_int`, `val_str`, `val_float`)" +
-                " VALUES(UUID(), ?, ?, ?)";
-          /*
-        Місця для варіативних даних замінюються на "?", незмінні дані (як-то UUID()) залишаються
-        у запиті. Якщо значення беруться у лапки, то знаки "?" все одно - без лапок
-         */
-            /*
-            На другому етапі (після підготовки - створення тимчасової процедури)
-            здійснюється заповнення параметрів. Бажано використовувати конкретні
-            типи даних сеттерів (уникати без потреби узагальненого setObject)
-             */
-        try (PreparedStatement prep = connection.prepareStatement(sql)) {
-            prep.setInt(1, val_int);
-            prep.setString(2, val_str);
-            prep.setFloat(3, val_float);
-               /*Третій етап - виконання*/
-            prep.executeUpdate();
+    /* -----------------config-------------------- */
+    private JSONObject config() {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader("appsetting.json"))) {
+            int c;
+            while ((c = reader.read()) != -1) {
+                sb.append((char) c);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return new JSONObject(sb.toString());
+    }
+    private java.sql.Connection connect() {
+        // реєструємо драйвер
+        // а) через Class.forName("com.mysql.cj.jdbc.Driver");
+        // б) через пряме створення драйвера
+        try {
+            driverSql = new com.mysql.cj.jdbc.Driver();
+            DriverManager.registerDriver(driverSql);
+            // підключаємось, маючи зареєстрований драйвер
+            return DriverManager.getConnection(url, user, password);
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+            return null;
         }
     }
+    private void disConnect() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            if (driverSql != null) {
+                DriverManager.deregisterDriver(driverSql);
+            }
+
+        } catch (SQLException ignored) {
+        }
+    }
+
 }
     /*        Java                                                  DB
        prepareStatement                                           proc_tmp() {
@@ -247,4 +259,22 @@ public class DbDemo {
                 random.nextDouble()
         ) ;
         */
+/*
+DTO, DAO
+DTO - Data Transfer Object - об'єкт для передачі даних - структура, яка
+містить поля (або властивості), їх аксесори, конструктори та утіліти
+(toString(), toJson(), тощо). Не містять логіку. Аналог - сутність (Entity)
 
+DAO - Data Access Object - об'єкт доступу до даних - логіка роботи з
+об'єктами DTO. Аналог LINQ
+
+Наприклад
+UserDTO {
+    private UUID id; String name;
+    public UUID getId()...
+}
+
+UserDAO {
+    public UserDTO getUserById( UUID id ) {...}
+}
+ */
