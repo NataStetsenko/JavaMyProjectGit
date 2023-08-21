@@ -1,11 +1,16 @@
 package step.learning;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import step.learning.control.ControlDemo;
 import step.learning.db.DbDemo;
 import step.learning.files.FileDemo;
 import step.learning.files.FileHomeWork;
 import step.learning.files.GsonDemo;
 import step.learning.files.GsonHomeWork;
+import step.learning.ioc.ConfigModule;
+import step.learning.ioc.IocApp;
 import step.learning.oop.Library;
 
 import java.io.File;
@@ -43,13 +48,18 @@ public class App
 {
     public static void main( String[] args )
     {
-       new DbDemo().run();
+      /* new DbDemo().run();*/
          /* new GsonHomeWork().run();
        new GsonDemo().run();
         new FileHomeWork().pathToDir();
         new ControlDemo().run();
         new Library().showCatalog();
         new FileDemo().run();*/
-
+        Injector injector = Guice.createInjector(
+                // модулі конфигур. - довільна кіл-ть
+                new ConfigModule()
+        );
+        IocApp app = injector.getInstance(IocApp.class);
+        app.run();
     }
 }
