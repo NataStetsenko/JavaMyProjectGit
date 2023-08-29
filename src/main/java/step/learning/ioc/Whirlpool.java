@@ -4,7 +4,7 @@ import org.bouncycastle.crypto.digests.WhirlpoolDigest;
 import org.bouncycastle.util.encoders.Hex;
 public class Whirlpool implements MyHash{
     @Override
-    public void transformation(String text) {
+    public String transformation(String text) {
         try {
             Digest digest = new WhirlpoolDigest();
             byte[] data = text.getBytes();
@@ -12,10 +12,12 @@ public class Whirlpool implements MyHash{
             byte[] output = new byte[digest.getDigestSize()];
             digest.doFinal(output, 0);
             String whirlpoolHex = new String(Hex.encode(output));
-            System.out.println("Whirlpool -> " + whirlpoolHex);
+            //System.out.println("Whirlpool -> " + );
+            return whirlpoolHex;
 
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 }

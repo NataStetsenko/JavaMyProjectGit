@@ -8,7 +8,7 @@ import java.security.Security;
 
 public class Keccak256 implements MyHash{
     @Override
-    public void transformation(String text) {
+    public String transformation(String text) {
 
         try {
             Security.addProvider(new BouncyCastleProvider());
@@ -16,9 +16,11 @@ public class Keccak256 implements MyHash{
             final byte[] encodedhash = digest.digest(
                     text.getBytes(StandardCharsets.UTF_8));
             String sha3Hex = bytesToHex(encodedhash);
-            System.out.println("Keccak-256 -> " + sha3Hex.toString());
+            return sha3Hex.toString();
+            //System.out.println("Keccak-256 -> " + );
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
     public static String bytesToHex(byte[] bytes) {

@@ -12,6 +12,10 @@ import step.learning.files.GsonHomeWork;
 import step.learning.ioc.ConfigModule;
 import step.learning.ioc.IocApp;
 import step.learning.oop.Library;
+import step.learning.treading.PercentDemo;
+import step.learning.treading.PercentHomework;
+import step.learning.treading.PercentHomework2;
+import step.learning.treading.ThreadDemo;
 
 import java.io.File;
 import java.util.Scanner;
@@ -44,7 +48,7 @@ import java.util.Scanner;
    Назва класа має один-до-одного збігатись з іменем файла
    Для імен класів прийнято CapitalCamelCase
   */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
@@ -56,10 +60,15 @@ public class App
         new Library().showCatalog();
         new FileDemo().run();*/
         Injector injector = Guice.createInjector(
-                // модулі конфигур. - довільна кіл-ть
+                // модулі конфігурації - довільна кількість
                 new ConfigModule()
-        );
-        IocApp app = injector.getInstance(IocApp.class);
-        app.run();
+        ) ;
+        injector.getInstance(
+                // IocApp.class
+                //  ThreadDemo.class
+                //PercentDemo.class
+                //   PercentHomework.class
+               PercentHomework2.class
+        ).run() ;  // Передача управління головному класу
     }
 }

@@ -3,7 +3,10 @@ package step.learning.ioc;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class IocApp {
   /*  @Inject
@@ -11,46 +14,133 @@ public class IocApp {
     @Inject @Named("bye")
     private PartingService byeService ;
     @Inject @Named("goodbye")
-    private PartingService goodbyeService ;*/
+    private PartingService goodbyeService;*/
     private final GreetingService helloService ;
-    private final PartingService byeService ;
+    private final GreetingService hiService ;
+    private final PartingService byeService;
     private final PartingService goodbyeService ;
     private final MyHash md5Hash;
     private final MyHash sha256Hash;
     private final MyHash keccak;
     private final MyHash whirlpool;
+    private final Random random;
+    @Inject @Named("connect")// Можлива "змішана" інжекція - і через конструктор
+    private String connect; // і через поля - обидві працюють одночасно
+    @Inject @Named("logFile")
+    private String logFile;
+    @Inject @Named("java.util")
+    private Random random2;
+    private final Logger logger;
     @Inject
-    public IocApp(GreetingService helloService,
+    public IocApp(@Named("hello")GreetingService helloService,
+                  GreetingService hiService,
                   @Named("bye") PartingService byeService,
                   @Named("goodbye") PartingService goodbyeService,
                   @Named("md5") MyHash md5Hash,
                   @Named("sha256") MyHash sha256Hash,
                   @Named("keccak")MyHash keccak,
-                  @Named("whirlpool") MyHash whirlpool) {
+                  @Named("whirlpool") MyHash whirlpool,
+                  @Named("java.util") Random random,
+                  Logger logger) {
         this.helloService = helloService;
+        this.hiService = hiService;
         this.byeService = byeService;
         this.goodbyeService = goodbyeService;
         this.md5Hash = md5Hash;
         this.sha256Hash = sha256Hash;
         this.keccak = keccak;
         this.whirlpool = whirlpool;
+        this.random = random;
+        this.logger = logger;
     }
 
     public void run(){
-        System.out.println("App");
-        helloService.sayHello();
+        NullExceptionByeService();
+        NullExceptionGoodbyeService();
+        NullExceptionHiService();
+        NullExceptionHelloService();
+        NullExceptionRandomService();
+        NullExceptionConnectService();
         byeService.sayGoodbye();
         goodbyeService.sayGoodbye();
-        String text = getText();
-        md5Hash.transformation(text);
-        sha256Hash.transformation(text);
-        keccak.transformation(text);
-        whirlpool.transformation(text);
+        helloService.sayHello();
+        hiService.sayHello();
+
+      /*  System.out.println(connect);
+        System.out.println(logFile);
+        System.out.println(random.nextInt());
+        System.out.println(random.hashCode() + " " + random2.hashCode());*/
+
+       /* logger.log(Level.INFO, "Logger INFO");
+        logger.log(Level.WARNING, "Logger WARNING");
+        logger.log(Level.SEVERE, "Logger SEVERE");*/
+
+
+      /*  String text = getText();
+        System.out.println("MD5 -> " + md5Hash.transformation(text));
+        System.out.println("SHA-256 -> " + sha256Hash.transformation(text));
+        System.out.println("Keccak-256 -> " + keccak.transformation(text));
+        System.out.println("Whirlpool -> " +  whirlpool.transformation(text));*/
+
     }
     private String getText(){
         System.out.println("Enter the text:");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
+    }
+    private void NullExceptionByeService(){
+
+        if (byeService != null) {
+            logger.log(Level.INFO, "Служба PartingService ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба PartingService NULL");
+        }
+    }
+    private void NullExceptionGoodbyeService(){
+
+        if (goodbyeService != null) {
+            logger.log(Level.INFO, "Служба PartingService ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба PartingService NULL");
+        }
+    }
+    private void NullExceptionHelloService(){
+
+        if (helloService != null) {
+            logger.log(Level.INFO, "Служба GreetingService ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба GreetingService NULL");
+        }
+    }
+    private void NullExceptionHiService(){
+
+        if (hiService != null) {
+            logger.log(Level.INFO, "Служба GreetingService ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба GreetingService NULL");
+        }
+    }
+    private void NullExceptionConnectService(){
+
+        if (connect != null) {
+            logger.log(Level.INFO, "Служба @Named: Connect ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба @Named: Connect NULL");
+        }
+    }
+    private void NullExceptionRandomService(){
+
+        if (random != null) {
+            logger.log(Level.INFO, "Служба Random ініціалізована");
+
+        } else {
+            logger.log(Level.SEVERE, "Служба Random NULL");
+        }
     }
 }
 /*
@@ -110,11 +200,4 @@ D - DIP dependency inversion (!не injection) principle
       прибирає конструктор за замовчуванням)
 *) правило інжекторів - якщо у класа є декілька конструкторів, то брати з
     найбільшою кількістю параметрів
- */
-/*
-Д.З. Реалізувати принаймні 2 хеш-сервіси (MD5, SHA) та впровадити їх
-у проєкт шляхом інжекції залежностей.
-Забезпечити можливість роботи з обома сервісами.
-Перевірити виведенням хешу рядка, що його вводить користувач
-з клавіатури
  */
